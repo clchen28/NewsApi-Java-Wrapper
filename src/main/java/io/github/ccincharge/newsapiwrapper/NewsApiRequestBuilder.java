@@ -43,7 +43,7 @@ class NewsApiRequestBuilder {
     }
 
     public NewsApiRequestBuilder setSources(Collection<String> sources) {
-        this.sources = Arrays.toString(sources.toArray());
+        this.sources = String.join(",", sources);
         return this;
     }
 
@@ -64,7 +64,7 @@ class NewsApiRequestBuilder {
     public NewsApiRequestBuilder setCategory(String category) {
         if (!validCategories.contains(category)) {
             throw new IllegalArgumentException("Invalid category - must be one of the following: "
-                    + validCategories.toString());
+                    + String.join(", ", validCategories));
         }
         this.category = category;
         return this;
@@ -77,7 +77,7 @@ class NewsApiRequestBuilder {
     public NewsApiRequestBuilder setLanguage(String language) {
         if (!validLanguages.contains(language)) {
             throw new IllegalArgumentException("Invalid language - must be one of the following: "
-                    + validLanguages.toString());
+                    + String.join(", ", validLanguages));
         }
         this.language = language;
         return this;
@@ -90,7 +90,7 @@ class NewsApiRequestBuilder {
     public NewsApiRequestBuilder setCountry(String country) {
         if (!validCountries.contains(country)) {
             throw new IllegalArgumentException("Invalid country - must be one of the following: "
-                    + validCountries.toString());
+                    + String.join(", ", validCountries));
         }
         this.country = country;
         return this;
