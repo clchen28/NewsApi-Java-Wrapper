@@ -37,6 +37,7 @@ class NewsApiRequestBuilder {
             "publishedAt");
 
     public NewsApiRequestBuilder setSources(String sources) {
+        // FIXME: Make this remove spaces
         this.sources = sources;
         return this;
     }

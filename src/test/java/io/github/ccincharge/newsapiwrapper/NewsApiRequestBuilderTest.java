@@ -1,107 +1,114 @@
 package io.github.ccincharge.newsapiwrapper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
-public class NewsApiRequestBuilderTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class NewsApiRequestBuilderTest {
     @Test
-    public void setSourcesString() throws Exception {
+    void setSourcesString1() {
         NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
         newsApiRequestBuilder.setSources("abc-news");
         assertEquals("abc-news", newsApiRequestBuilder.getSources());
     }
 
     @Test
-    public void setSources1() throws Exception {
+    void setSourcesString0() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setSources("");
+        assertEquals("", newsApiRequestBuilder.getSources());
     }
 
     @Test
-    public void getSources() throws Exception {
+    void setSourcesString2() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setSources("abc-news,abc-news-au");
+        assertEquals("abc-news,abc-news-au", newsApiRequestBuilder.getSources());
     }
 
     @Test
-    public void setQ() throws Exception {
+    void setSourcesCollection1() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        Collection<String> sources = new ArrayList<String>();
+        sources.add("abc-news");
+        newsApiRequestBuilder.setSources(sources);
+        assertEquals("abc-news", newsApiRequestBuilder.getSources());
     }
 
     @Test
-    public void getQ() throws Exception {
+    void setSourcesCollection2() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        Collection<String> sources = new ArrayList<String>();
+        sources.add("abc-news");
+        sources.add("abc-news-au");
+        newsApiRequestBuilder.setSources(sources);
+        assertEquals("abc-news,abc-news-au", newsApiRequestBuilder.getSources());
     }
 
     @Test
-    public void setCategory() throws Exception {
+    void setQ() {
     }
 
     @Test
-    public void getCategory() throws Exception {
+    void setCategory() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setCategory("business");
+        assertEquals("business", newsApiRequestBuilder.getCategory());
     }
 
     @Test
-    public void setLanguage() throws Exception {
+    void setCategoryBad() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setCategory("abcde");
     }
 
     @Test
-    public void getLanguage() throws Exception {
+    void setLanguage() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setLanguage("en");
+        assertEquals("en", newsApiRequestBuilder.getLanguage());
     }
 
     @Test
-    public void setCountry() throws Exception {
+    void setCountry() {
     }
 
     @Test
-    public void getCountry() throws Exception {
+    void setDomains() {
     }
 
     @Test
-    public void setDomains() throws Exception {
+    void setFrom() {
     }
 
     @Test
-    public void getDomains() throws Exception {
+    void setTo() {
     }
 
     @Test
-    public void setFrom() throws Exception {
+    void setTo1() {
     }
 
     @Test
-    public void setFrom1() throws Exception {
+    void getTo() {
     }
 
     @Test
-    public void getFrom() throws Exception {
+    void setSortBy() {
     }
 
     @Test
-    public void setTo() throws Exception {
+    void getSortBy() {
     }
 
     @Test
-    public void setTo1() throws Exception {
+    void setPage() {
     }
 
     @Test
-    public void getTo() throws Exception {
+    void getPage() {
     }
-
-    @Test
-    public void setSortBy() throws Exception {
-    }
-
-    @Test
-    public void getSortBy() throws Exception {
-    }
-
-    @Test
-    public void setPage() throws Exception {
-    }
-
-    @Test
-    public void getPage() throws Exception {
-    }
-
-    @Test
-    public void setApiKey() throws Exception {
-    }
-
 }

@@ -18,7 +18,7 @@ class NewsApiTopEndpoint extends NewsApiEndpoint {
     }
 
     String buildURL(NewsApiRequestBuilder apiRequest) throws UnsupportedEncodingException {
-        StringJoiner paramJoiner = new StringJoiner(",");
+        StringJoiner paramJoiner = new StringJoiner("&");
         if (apiRequest.getSources() != null) {
             paramJoiner.add("sources=" + apiRequest.getSources());
         }
