@@ -62,7 +62,9 @@ class NewsApiRequestBuilderTest {
     @Test
     void setCategoryBad() {
         NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
-        newsApiRequestBuilder.setCategory("abcde");
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                ()->newsApiRequestBuilder.setCategory("abcde"));
+        assertTrue(e.getMessage().contains("Invalid category"));
     }
 
     @Test
