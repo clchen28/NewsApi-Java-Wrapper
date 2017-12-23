@@ -1,5 +1,7 @@
 package io.github.ccincharge.newsapiwrapper;
 
+import java.io.UnsupportedEncodingException;
+
 class NewsApi {
     private String apiKey;
     private NewsApiTopEndpoint TopEndpoint;
@@ -16,7 +18,8 @@ class NewsApi {
         this.apiKey = apiKey;
     }
 
-    public NewsApiArticlesResponse sendTopRequest(NewsApiRequestBuilder apiRequest) {
+    public NewsApiArticlesResponse sendTopRequest(NewsApiRequestBuilder apiRequest)
+            throws UnsupportedEncodingException {
         apiRequest.setApiKey(this.apiKey);
         return this.TopEndpoint.sendRequest(apiRequest);
     }
