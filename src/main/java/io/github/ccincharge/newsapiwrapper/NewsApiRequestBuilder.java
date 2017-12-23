@@ -88,7 +88,7 @@ class NewsApiRequestBuilder {
     }
 
     public NewsApiRequestBuilder setCountry(String country) {
-        if (!validLanguages.contains(country)) {
+        if (!validCountries.contains(country)) {
             throw new IllegalArgumentException("Invalid country - must be one of the following: "
                     + validCountries.toString());
         }

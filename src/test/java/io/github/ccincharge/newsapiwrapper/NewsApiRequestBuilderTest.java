@@ -75,9 +75,29 @@ class NewsApiRequestBuilderTest {
     }
 
     @Test
-    void setCountry() {
+    void setLanguageBad() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                ()->newsApiRequestBuilder.setLanguage("abcde"));
+        assertTrue(e.getMessage().contains("Invalid language"));
     }
 
+    @Test
+    void setCountry() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setCountry("us");
+        assertEquals("us", newsApiRequestBuilder.getCountry());
+    }
+
+    @Test
+    void setCountryBad() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                ()->newsApiRequestBuilder.setCountry("abcde"));
+        assertTrue(e.getMessage().contains("Invalid country"));
+    }
+
+    /*
     @Test
     void setDomains() {
     }
@@ -95,22 +115,12 @@ class NewsApiRequestBuilderTest {
     }
 
     @Test
-    void getTo() {
-    }
-
-    @Test
     void setSortBy() {
-    }
-
-    @Test
-    void getSortBy() {
     }
 
     @Test
     void setPage() {
     }
+    */
 
-    @Test
-    void getPage() {
-    }
 }
