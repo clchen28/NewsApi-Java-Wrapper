@@ -1,32 +1,46 @@
 package io.github.ccincharge.newsapiwrapper;
 
-import java.io.UnsupportedEncodingException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 
 class NewsApi {
     private String apiKey;
     private NewsApiTopEndpoint TopEndpoint;
+    private NewsApiEverythingEndpoint EverythingEndpoint;
+    Client restClient;
 
     public NewsApi(String apiKey) {
         this.setApiKey(apiKey);
+        initializeEndpoints();
     }
 
     private void initializeEndpoints() {
         this.TopEndpoint = new NewsApiTopEndpoint();
+        this.EverythingEndpoint = new NewsApiEverythingEndpoint();
+    }
+
+    private void initializeRequestAndClient(NewsApiRequestBuilder apiRequest) {
+        apiRequest.setApiKey(this.apiKey);
+        if (this.restClient == null) {
+            this.restClient = ClientBuilder.newClient();
+        }
     }
 
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
 
-    public NewsApiArticlesResponse sendTopRequest(NewsApiRequestBuilder apiRequest)
-            throws UnsupportedEncodingException {
-        apiRequest.setApiKey(this.apiKey);
-        return this.TopEndpoint.sendRequest(apiRequest);
+    public NewsApiArticlesResponse sendTopRequest(NewsApiRequestBuilder apiRequest) {
+        initializeRequestAndClient(apiRequest);
+        return this.TopEndpoint.sendRequest(apiRequest, this.restClient);
     }
 
-    /*
-    public NewsApiArticlesResponse sendEverythingRequest(NewsApiRequestBuilder apiRequest);
 
+    public NewsApiArticlesResponse sendEverythingRequest(NewsApiRequestBuilder apiRequest) {
+        initializeRequestAndClient(apiRequest);
+        return this.EverythingEndpoint.sendRequest(apiRequest, this.restClient);
+    }
+/*
     public NewsApiSourcesResponse sendSourcesRequest(NewsApiRequestBuilder apiRequest);
     */
 }

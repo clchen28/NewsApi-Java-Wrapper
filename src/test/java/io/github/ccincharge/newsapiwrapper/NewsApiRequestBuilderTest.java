@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,6 +51,16 @@ class NewsApiRequestBuilderTest {
 
     @Test
     void setQ() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setQ("my query");
+        assertEquals("my+query", newsApiRequestBuilder.getQ());
+    }
+
+    @Test
+    void setQSingle() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setQ("query");
+        assertEquals("query", newsApiRequestBuilder.getQ());
     }
 
     @Test
@@ -97,30 +108,134 @@ class NewsApiRequestBuilderTest {
         assertTrue(e.getMessage().contains("Invalid country"));
     }
 
-    /*
+
     @Test
     void setDomains() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setDomains("bbc.co.uk");
+        assertEquals("bbc.co.uk", newsApiRequestBuilder.getDomains());
     }
 
     @Test
-    void setFrom() {
+    void setDomainsSeveralString() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setDomains("bbc.co.uk, techcrunch.com");
+        assertEquals("bbc.co.uk,techcrunch.com", newsApiRequestBuilder.getDomains());
     }
 
     @Test
-    void setTo() {
+    void setDomainsCollection() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        Collection<String> domains = new ArrayList<String>();
+        domains.add("bbc.co.uk");
+        newsApiRequestBuilder.setDomains(domains);
+        assertEquals("bbc.co.uk", newsApiRequestBuilder.getDomains());
     }
 
     @Test
-    void setTo1() {
+    void setDomainsSeveralCollection() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        Collection<String> domains = new ArrayList<String>();
+        domains.add("bbc.co.uk");
+        domains.add("techcrunch.com");
+        newsApiRequestBuilder.setDomains(domains);
+        assertEquals("bbc.co.uk,techcrunch.com", newsApiRequestBuilder.getDomains());
+    }
+
+    @Test
+    void setFromDate() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        long epoch = 0;
+        Date testDate = new Date(epoch);
+        newsApiRequestBuilder.setFrom(testDate);
+        assertEquals("1970-01-01T00:00:00Z", newsApiRequestBuilder.getFrom());
+    }
+
+    @Test
+    void setFromString() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setFrom("1970-01-01T00:00:00Z");
+        assertEquals("1970-01-01T00:00:00Z", newsApiRequestBuilder.getFrom());
+    }
+
+    @Test
+    void setFromStringDayOnly() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setFrom("1970-01-01");
+        assertEquals("1970-01-01", newsApiRequestBuilder.getFrom());
+    }
+
+    @Test
+    void setFromStringBadDay() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                ()->newsApiRequestBuilder.setFrom("1970-02-30"));
+        assertTrue(e.getMessage().contains("Invalid from date"));
+    }
+
+    @Test
+    void setFromStringInvalid() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                ()->newsApiRequestBuilder.setFrom("1970-01-01T00:00:61Z"));
+        assertTrue(e.getMessage().contains("Invalid from date"));
+    }
+
+    @Test
+    void setToDate() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        long epoch = 0;
+        Date testDate = new Date(epoch);
+        newsApiRequestBuilder.setTo(testDate);
+        assertEquals("1970-01-01T00:00:00Z", newsApiRequestBuilder.getTo());
+    }
+
+    @Test
+    void setToString() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setTo("1970-01-01T00:00:00Z");
+        assertEquals("1970-01-01T00:00:00Z", newsApiRequestBuilder.getTo());
+    }
+
+    @Test
+    void setToStringInvalid() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                ()->newsApiRequestBuilder.setTo("1970-01-01T00:00:61Z"));
+        assertTrue(e.getMessage().contains("Invalid to date"));
     }
 
     @Test
     void setSortBy() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setSortBy("relevancy");
+        assertEquals("relevancy", newsApiRequestBuilder.getSortBy());
+    }
+
+    @Test
+    void setSortByInvalid() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                ()->newsApiRequestBuilder.setSortBy("test"));
+        assertTrue(e.getMessage().contains("Invalid sortBy"));
     }
 
     @Test
     void setPage() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder();
+        newsApiRequestBuilder.setPage(2);
+        assertEquals(new Integer(2), newsApiRequestBuilder.getPage());
     }
-    */
+
+    @Test
+    void setMultiple() {
+        NewsApiRequestBuilder newsApiRequestBuilder = new NewsApiRequestBuilder()
+                .setPage(2)
+                .setSources("abc-news,abc-news-au")
+                .setLanguage("en");
+        assertEquals(new Integer(2), newsApiRequestBuilder.getPage());
+        assertEquals("abc-news,abc-news-au", newsApiRequestBuilder.getSources());
+        assertEquals("en", newsApiRequestBuilder.getLanguage());
+    }
 
 }

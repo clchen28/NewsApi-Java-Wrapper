@@ -1,7 +1,5 @@
 package io.github.ccincharge.newsapiwrapper;
 
-// TODO: Should publishedAt be a date object?
-
 class NewsApiResponse {
     private String status;
     private String code;
@@ -40,7 +38,7 @@ class NewsApiResponse {
         return this.rawJSON;
     }
 
-    public NewsApiResponse() {
+    NewsApiResponse() {
         this.setStatus("unsent");
     }
 }

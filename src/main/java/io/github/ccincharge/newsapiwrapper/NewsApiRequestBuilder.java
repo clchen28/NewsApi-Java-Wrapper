@@ -2,15 +2,15 @@ package io.github.ccincharge.newsapiwrapper;
 
 import com.google.common.collect.Sets;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
-
-// TODO: Move all exception handling further down the line
+import java.util.TimeZone;
 
 class NewsApiRequestBuilder {
     private String sources;
@@ -37,8 +37,7 @@ class NewsApiRequestBuilder {
             "publishedAt");
 
     public NewsApiRequestBuilder setSources(String sources) {
-        // FIXME: Make this remove spaces
-        this.sources = sources;
+        this.sources = sources.replaceAll("\\s","");
         return this;
     }
 
@@ -51,8 +50,13 @@ class NewsApiRequestBuilder {
         return this.sources;
     }
 
-    // TODO: Must be URL-encoded
     public NewsApiRequestBuilder setQ(String q) {
+        try {
+            q = URLEncoder.encode(q, "UTF-8");
+        }
+        catch (UnsupportedEncodingException e) {
+            throw new AssertionError("UTF-8 not supported");
+        }
         this.q = q;
         return this;
     }
@@ -101,7 +105,12 @@ class NewsApiRequestBuilder {
     }
 
     public NewsApiRequestBuilder setDomains(String domains) {
-        this.domains = domains;
+        this.domains = domains.replaceAll("\\s","");
+        return this;
+    }
+
+    public NewsApiRequestBuilder setDomains(Collection<String> domains) {
+        this.domains = String.join(",", domains);
         return this;
     }
 
@@ -121,7 +130,7 @@ class NewsApiRequestBuilder {
         }
         else {
             try {
-                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
                 formatter.setLenient(false);
                 formatter.parse(date);
             } catch (ParseException e) {
@@ -132,7 +141,10 @@ class NewsApiRequestBuilder {
     }
 
     public NewsApiRequestBuilder setFrom(Date from) {
-        this.from = from.toString();
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        df.setTimeZone(tz);
+        this.from = df.format(from);
         return this;
     }
 
@@ -151,7 +163,10 @@ class NewsApiRequestBuilder {
     }
 
     public NewsApiRequestBuilder setTo(Date to) {
-        this.to = to.toString();
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        df.setTimeZone(tz);
+        this.to = df.format(to);
         return this;
     }
 
@@ -190,7 +205,11 @@ class NewsApiRequestBuilder {
         return this.page;
     }
 
-    void setApiKey(String apiKey) {
+    public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
+    }
+
+    String getApiKey() {
+        return this.apiKey;
     }
 }

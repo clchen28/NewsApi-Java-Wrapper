@@ -1,48 +1,31 @@
 package io.github.ccincharge.newsapiwrapper;
 
-import java.io.UnsupportedEncodingException;
-import java.util.StringJoiner;
-import java.net.URLEncoder;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.WebTarget;
 
-class NewsApiTopEndpoint extends NewsApiEndpoint {
+class NewsApiTopEndpoint extends NewsApiArticlesEndpoint {
     NewsApiTopEndpoint() {
         super();
         this.setRootURL("https://newsapi.org/v2/top-headlines?");
     }
 
-    // FIXME: Actually implement this
-    public NewsApiArticlesResponse sendRequest(NewsApiRequestBuilder apiRequest)
-            throws UnsupportedEncodingException {
-        String queryUrl = buildURL(apiRequest);
-        return new NewsApiArticlesResponse();
-    }
-
-    String buildURL(NewsApiRequestBuilder apiRequest) throws UnsupportedEncodingException {
-        StringJoiner paramJoiner = new StringJoiner("&");
+    WebTarget buildTarget(NewsApiRequestBuilder apiRequest, Client restClient) {
+        WebTarget target = restClient.target(this.getRootURL());
         if (apiRequest.getSources() != null) {
-            paramJoiner.add("sources=" + apiRequest.getSources());
+            target = target.queryParam("sources", apiRequest.getSources());
         }
         if (apiRequest.getQ() != null) {
-            paramJoiner.add("q=" + apiRequest.getQ());
+            target = target.queryParam("q", apiRequest.getQ());
         }
         if (apiRequest.getCategory() != null) {
-            paramJoiner.add("category=" + apiRequest.getCategory());
+            target = target.queryParam("category", apiRequest.getCategory());
         }
         if (apiRequest.getLanguage() != null) {
-            paramJoiner.add("language=" + apiRequest.getLanguage());
+            target = target.queryParam("language", apiRequest.getLanguage());
         }
         if (apiRequest.getCountry() != null) {
-            paramJoiner.add("country=" + apiRequest.getCountry());
+            target = target.queryParam("country", apiRequest.getCountry());
         }
-        String url = this.getRootURL() + paramJoiner.toString();
-        String finalUrl;
-        try {
-            finalUrl = URLEncoder.encode(url, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e) {
-            throw new UnsupportedEncodingException("All parameters in NewsApiRequestBuilder must "
-                + "be URL encode-able.");
-        }
-        return finalUrl;
+        return target;
     }
 }
