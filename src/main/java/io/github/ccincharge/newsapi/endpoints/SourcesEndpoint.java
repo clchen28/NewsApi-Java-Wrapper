@@ -1,7 +1,7 @@
 package io.github.ccincharge.newsapi.endpoints;
 
 import com.google.gson.Gson;
-import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
+import io.github.ccincharge.newsapi.requests.RequestBuilder;
 import io.github.ccincharge.newsapi.NewsApiSourcesResponse;
 
 import javax.ws.rs.client.Client;
@@ -23,7 +23,7 @@ public class SourcesEndpoint extends Endpoint {
         return responseObj;
     }
 
-    public NewsApiSourcesResponse sendRequest(NewsApiRequestBuilder apiRequest,
+    public NewsApiSourcesResponse sendRequest(RequestBuilder apiRequest,
                                                 Client restClient) {
         WebTarget target = buildTarget(apiRequest, restClient);
         Invocation.Builder builder = target.request(MediaType.APPLICATION_JSON);
@@ -36,7 +36,7 @@ public class SourcesEndpoint extends Endpoint {
         return responseObj;
     }
 
-    WebTarget buildTarget(NewsApiRequestBuilder apiRequest, Client restClient) {
+    WebTarget buildTarget(RequestBuilder apiRequest, Client restClient) {
         WebTarget target = restClient.target(this.getRootURL());
         if (apiRequest.getCategory() != null) {
             target = target.queryParam("category", apiRequest.getCategory());

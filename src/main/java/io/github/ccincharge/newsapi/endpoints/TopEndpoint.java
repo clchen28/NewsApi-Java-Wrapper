@@ -1,6 +1,6 @@
 package io.github.ccincharge.newsapi.endpoints;
 
-import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
+import io.github.ccincharge.newsapi.requests.RequestBuilder;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -11,7 +11,7 @@ public class TopEndpoint extends ArticlesEndpoint {
         this.setRootURL("https://newsapi.org/v2/top-headlines?");
     }
 
-    WebTarget buildTarget(NewsApiRequestBuilder apiRequest, Client restClient) {
+    WebTarget buildTarget(RequestBuilder apiRequest, Client restClient) {
         WebTarget target = restClient.target(this.getRootURL());
         if (apiRequest.getSources() != null) {
             target = target.queryParam("sources", apiRequest.getSources());

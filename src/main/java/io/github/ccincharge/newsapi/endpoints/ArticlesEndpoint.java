@@ -2,7 +2,7 @@ package io.github.ccincharge.newsapi.endpoints;
 
 import com.google.gson.Gson;
 import io.github.ccincharge.newsapi.NewsApiArticlesResponse;
-import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
+import io.github.ccincharge.newsapi.requests.RequestBuilder;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
@@ -23,7 +23,7 @@ public abstract class ArticlesEndpoint extends Endpoint {
         return responseObj;
     }
 
-    public NewsApiArticlesResponse sendRequest(NewsApiRequestBuilder apiRequest,
+    public NewsApiArticlesResponse sendRequest(RequestBuilder apiRequest,
                                                Client restClient) {
         WebTarget target = buildTarget(apiRequest, restClient);
         Invocation.Builder builder = target.request(MediaType.APPLICATION_JSON);

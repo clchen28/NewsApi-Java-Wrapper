@@ -2,6 +2,8 @@ package io.github.ccincharge.newsapi;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+
+import io.github.ccincharge.newsapi.requests.RequestBuilder;
 import io.github.ccincharge.newsapi.endpoints.EverythingEndpoint;
 import io.github.ccincharge.newsapi.endpoints.SourcesEndpoint;
 import io.github.ccincharge.newsapi.endpoints.TopEndpoint;
@@ -24,7 +26,7 @@ class NewsApi {
         this.SourcesEndpoint = new SourcesEndpoint();
     }
 
-    private void initializeRequestAndClient(NewsApiRequestBuilder apiRequest) {
+    private void initializeRequestAndClient(RequestBuilder apiRequest) {
         apiRequest.setApiKey(this.apiKey);
         if (this.restClient == null) {
             this.restClient = ClientBuilder.newClient();
@@ -35,18 +37,18 @@ class NewsApi {
         this.apiKey = apiKey;
     }
 
-    public NewsApiArticlesResponse sendTopRequest(NewsApiRequestBuilder apiRequest) {
+    public NewsApiArticlesResponse sendTopRequest(RequestBuilder apiRequest) {
         initializeRequestAndClient(apiRequest);
         return this.TopEndpoint.sendRequest(apiRequest, this.restClient);
     }
 
 
-    public NewsApiArticlesResponse sendEverythingRequest(NewsApiRequestBuilder apiRequest) {
+    public NewsApiArticlesResponse sendEverythingRequest(RequestBuilder apiRequest) {
         initializeRequestAndClient(apiRequest);
         return this.EverythingEndpoint.sendRequest(apiRequest, this.restClient);
     }
 
-    public NewsApiSourcesResponse sendSourcesRequest(NewsApiRequestBuilder apiRequest) {
+    public NewsApiSourcesResponse sendSourcesRequest(RequestBuilder apiRequest) {
         initializeRequestAndClient(apiRequest);
         return this.SourcesEndpoint.sendRequest(apiRequest, this.restClient);
     }

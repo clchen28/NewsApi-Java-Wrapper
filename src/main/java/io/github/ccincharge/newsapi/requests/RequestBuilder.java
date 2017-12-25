@@ -1,4 +1,4 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.requests;
 
 import com.google.common.collect.Sets;
 
@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TimeZone;
 
-public class NewsApiRequestBuilder {
+public class RequestBuilder {
     private String sources;
     private String q;
     private String category;
@@ -36,12 +36,12 @@ public class NewsApiRequestBuilder {
     static private final Set<String> validSortBy = Sets.newHashSet("relevancy", "popularity",
             "publishedAt");
 
-    public NewsApiRequestBuilder setSources(String sources) {
+    public RequestBuilder setSources(String sources) {
         this.sources = sources.replaceAll("\\s","");
         return this;
     }
 
-    public NewsApiRequestBuilder setSources(Collection<String> sources) {
+    public RequestBuilder setSources(Collection<String> sources) {
         this.sources = String.join(",", sources);
         return this;
     }
@@ -50,7 +50,7 @@ public class NewsApiRequestBuilder {
         return this.sources;
     }
 
-    public NewsApiRequestBuilder setQ(String q) {
+    public RequestBuilder setQ(String q) {
         try {
             q = URLEncoder.encode(q, "UTF-8");
         }
@@ -65,7 +65,7 @@ public class NewsApiRequestBuilder {
         return this.q;
     }
 
-    public NewsApiRequestBuilder setCategory(String category) {
+    public RequestBuilder setCategory(String category) {
         if (!validCategories.contains(category)) {
             throw new IllegalArgumentException("Invalid category - must be one of the following: "
                     + String.join(", ", validCategories));
@@ -78,7 +78,7 @@ public class NewsApiRequestBuilder {
         return this.category;
     }
 
-    public NewsApiRequestBuilder setLanguage(String language) {
+    public RequestBuilder setLanguage(String language) {
         if (!validLanguages.contains(language)) {
             throw new IllegalArgumentException("Invalid language - must be one of the following: "
                     + String.join(", ", validLanguages));
@@ -91,7 +91,7 @@ public class NewsApiRequestBuilder {
         return this.language;
     }
 
-    public NewsApiRequestBuilder setCountry(String country) {
+    public RequestBuilder setCountry(String country) {
         if (!validCountries.contains(country)) {
             throw new IllegalArgumentException("Invalid country - must be one of the following: "
                     + String.join(", ", validCountries));
@@ -104,12 +104,12 @@ public class NewsApiRequestBuilder {
         return this.country;
     }
 
-    public NewsApiRequestBuilder setDomains(String domains) {
+    public RequestBuilder setDomains(String domains) {
         this.domains = domains.replaceAll("\\s","");
         return this;
     }
 
-    public NewsApiRequestBuilder setDomains(Collection<String> domains) {
+    public RequestBuilder setDomains(Collection<String> domains) {
         this.domains = String.join(",", domains);
         return this;
     }
@@ -140,7 +140,7 @@ public class NewsApiRequestBuilder {
         return true;
     }
 
-    public NewsApiRequestBuilder setFrom(Date from) {
+    public RequestBuilder setFrom(Date from) {
         TimeZone tz = TimeZone.getTimeZone("UTC");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         df.setTimeZone(tz);
@@ -148,7 +148,7 @@ public class NewsApiRequestBuilder {
         return this;
     }
 
-    public NewsApiRequestBuilder setFrom(String from) {
+    public RequestBuilder setFrom(String from) {
         if (!validateDate(from)) {
             throw new IllegalArgumentException("Invalid from date, must have \"yyyy-MM-dd\" or "
                     + " \"yyyy-MM-dd'T'HH:mm'Z'\" pattern");
@@ -162,7 +162,7 @@ public class NewsApiRequestBuilder {
         return this.from;
     }
 
-    public NewsApiRequestBuilder setTo(Date to) {
+    public RequestBuilder setTo(Date to) {
         TimeZone tz = TimeZone.getTimeZone("UTC");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         df.setTimeZone(tz);
@@ -170,7 +170,7 @@ public class NewsApiRequestBuilder {
         return this;
     }
 
-    public NewsApiRequestBuilder setTo(String to) {
+    public RequestBuilder setTo(String to) {
         if (!validateDate(to)) {
             throw new IllegalArgumentException("Invalid to date, must have \"yyyy-MM-dd\" or "
                     + " \"yyyy-MM-dd'T'HH:mm'Z'\" pattern");
@@ -183,7 +183,7 @@ public class NewsApiRequestBuilder {
         return this.to;
     }
 
-    public NewsApiRequestBuilder setSortBy(String sortBy) {
+    public RequestBuilder setSortBy(String sortBy) {
         if (!validSortBy.contains(sortBy)) {
             throw new IllegalArgumentException("Invalid sortBy - must be one of the following: "
                     + validSortBy.toString());
@@ -196,7 +196,7 @@ public class NewsApiRequestBuilder {
         return this.sortBy;
     }
 
-    public NewsApiRequestBuilder setPage(Integer page) {
+    public RequestBuilder setPage(Integer page) {
         this.page = page;
         return this;
     }
