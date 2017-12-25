@@ -1,12 +1,15 @@
 package io.github.ccincharge.newsapi;
 
 import com.google.gson.Gson;
+import io.github.ccincharge.newsapi.exceptions.*;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+
 
 abstract class NewsApiArticlesEndpoint extends NewsApiEndpoint {
     NewsApiArticlesEndpoint() {

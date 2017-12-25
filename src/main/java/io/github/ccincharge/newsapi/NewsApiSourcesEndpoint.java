@@ -1,6 +1,7 @@
 package io.github.ccincharge.newsapi;
 
 import com.google.gson.Gson;
+import io.github.ccincharge.newsapi.exceptions.*;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;

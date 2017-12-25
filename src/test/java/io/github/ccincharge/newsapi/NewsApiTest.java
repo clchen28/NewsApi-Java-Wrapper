@@ -1,6 +1,7 @@
 package io.github.ccincharge.newsapi;
 
 import com.github.shyiko.dotenv.DotEnv;
+import io.github.ccincharge.newsapi.exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
