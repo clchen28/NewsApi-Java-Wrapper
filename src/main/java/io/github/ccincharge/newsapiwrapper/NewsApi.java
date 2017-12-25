@@ -7,6 +7,7 @@ class NewsApi {
     private String apiKey;
     private NewsApiTopEndpoint TopEndpoint;
     private NewsApiEverythingEndpoint EverythingEndpoint;
+    private NewsApiSourcesEndpoint SourcesEndpoint;
     Client restClient;
 
     public NewsApi(String apiKey) {
@@ -17,6 +18,7 @@ class NewsApi {
     private void initializeEndpoints() {
         this.TopEndpoint = new NewsApiTopEndpoint();
         this.EverythingEndpoint = new NewsApiEverythingEndpoint();
+        this.SourcesEndpoint = new NewsApiSourcesEndpoint();
     }
 
     private void initializeRequestAndClient(NewsApiRequestBuilder apiRequest) {
@@ -40,7 +42,10 @@ class NewsApi {
         initializeRequestAndClient(apiRequest);
         return this.EverythingEndpoint.sendRequest(apiRequest, this.restClient);
     }
-/*
-    public NewsApiSourcesResponse sendSourcesRequest(NewsApiRequestBuilder apiRequest);
-    */
+
+    public NewsApiSourcesResponse sendSourcesRequest(NewsApiRequestBuilder apiRequest) {
+        initializeRequestAndClient(apiRequest);
+        return this.SourcesEndpoint.sendRequest(apiRequest, this.restClient);
+    }
+
 }

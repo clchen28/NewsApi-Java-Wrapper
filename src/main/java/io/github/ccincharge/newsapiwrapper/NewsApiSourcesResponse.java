@@ -2,7 +2,7 @@ package io.github.ccincharge.newsapiwrapper;
 
 import java.util.ArrayList;
 
-class NewsApiSourcesResponse {
+class NewsApiSourcesResponse extends NewsApiResponse {
     private ArrayList<NewsApiSource> sources;
 
     public NewsApiSourcesResponse() {
