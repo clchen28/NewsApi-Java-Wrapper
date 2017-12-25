@@ -1,6 +1,6 @@
 package io.github.ccincharge.newsapi;
 
-class NewsApiResponse {
+public class NewsApiResponse {
     private String status;
     private String code;
     private String message;
@@ -18,7 +18,7 @@ class NewsApiResponse {
         this.message = message;
     }
 
-    void setRawJSON(String rawJSON) {
+    public void setRawJSON(String rawJSON) {
         this.rawJSON = rawJSON;
     }
 

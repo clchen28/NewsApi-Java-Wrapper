@@ -1,9 +1,12 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.endpoints;
+
+import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
+import io.github.ccincharge.newsapi.NewsApiResponse;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
-abstract class NewsApiEndpoint {
+public abstract class NewsApiEndpoint {
     private String rootURL;
 
     void setRootURL(String rootURL) {

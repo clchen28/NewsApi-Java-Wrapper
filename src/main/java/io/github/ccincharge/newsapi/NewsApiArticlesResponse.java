@@ -2,7 +2,7 @@ package io.github.ccincharge.newsapi;
 
 import java.util.ArrayList;
 
-class NewsApiArticlesResponse extends NewsApiResponse {
+public class NewsApiArticlesResponse extends NewsApiResponse {
     private Integer totalResults;
     private ArrayList<NewsApiArticle> articles;
 

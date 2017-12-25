@@ -1,7 +1,10 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.endpoints;
 
 import com.google.gson.Gson;
-import io.github.ccincharge.newsapi.exceptions.*;
+import io.github.ccincharge.newsapi.NewsApiArticlesResponse;
+import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
+import io.github.ccincharge.newsapi.exceptions.NewsApiAuthFailureException;
+import io.github.ccincharge.newsapi.exceptions.NewsApiBadQueryException;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
@@ -10,8 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-
-abstract class NewsApiArticlesEndpoint extends NewsApiEndpoint {
+public abstract class NewsApiArticlesEndpoint extends NewsApiEndpoint {
     NewsApiArticlesEndpoint() {
         super();
     }

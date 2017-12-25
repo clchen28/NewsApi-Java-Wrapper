@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TimeZone;
 
-class NewsApiRequestBuilder {
+public class NewsApiRequestBuilder {
     private String sources;
     private String q;
     private String category;
@@ -209,7 +209,7 @@ class NewsApiRequestBuilder {
         this.apiKey = apiKey;
     }
 
-    String getApiKey() {
+    public String getApiKey() {
         return this.apiKey;
     }
 }

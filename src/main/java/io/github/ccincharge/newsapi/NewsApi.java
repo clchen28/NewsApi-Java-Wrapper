@@ -2,6 +2,9 @@ package io.github.ccincharge.newsapi;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import io.github.ccincharge.newsapi.endpoints.NewsApiEverythingEndpoint;
+import io.github.ccincharge.newsapi.endpoints.NewsApiSourcesEndpoint;
+import io.github.ccincharge.newsapi.endpoints.NewsApiTopEndpoint;
 
 class NewsApi {
     private String apiKey;

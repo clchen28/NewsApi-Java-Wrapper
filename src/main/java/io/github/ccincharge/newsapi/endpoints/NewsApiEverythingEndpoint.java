@@ -1,10 +1,12 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.endpoints;
+
+import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
-class NewsApiEverythingEndpoint extends NewsApiArticlesEndpoint {
-    NewsApiEverythingEndpoint() {
+public class NewsApiEverythingEndpoint extends NewsApiArticlesEndpoint {
+    public NewsApiEverythingEndpoint() {
         super();
         this.setRootURL("https://newsapi.org/v2/everything?");
     }
