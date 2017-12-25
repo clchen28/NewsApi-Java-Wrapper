@@ -1,4 +1,4 @@
-package io.github.ccincharge.newsapiwrapper;
+package io.github.ccincharge.newsapi;
 
 class NewsApiAuthFailureException extends RuntimeException {
     NewsApiAuthFailureException(String message) {

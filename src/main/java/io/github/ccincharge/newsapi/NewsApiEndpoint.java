@@ -1,4 +1,4 @@
-package io.github.ccincharge.newsapiwrapper;
+package io.github.ccincharge.newsapi;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;

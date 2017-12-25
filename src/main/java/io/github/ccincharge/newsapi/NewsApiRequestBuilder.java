@@ -1,4 +1,4 @@
-package io.github.ccincharge.newsapiwrapper;
+package io.github.ccincharge.newsapi;
 
 import com.google.common.collect.Sets;
 

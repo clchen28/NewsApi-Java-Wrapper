@@ -1,4 +1,4 @@
-package io.github.ccincharge.newsapiwrapper;
+package io.github.ccincharge.newsapi;
 
 import com.github.shyiko.dotenv.DotEnv;
 import org.junit.jupiter.api.Test;
