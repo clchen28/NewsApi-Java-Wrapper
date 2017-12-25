@@ -5,11 +5,6 @@ import javax.ws.rs.client.WebTarget;
 
 abstract class NewsApiEndpoint {
     private String rootURL;
-    private NewsApiResponse response;
-
-    NewsApiEndpoint() {
-        this.response = new NewsApiResponse();
-    }
 
     void setRootURL(String rootURL) {
         this.rootURL = rootURL;

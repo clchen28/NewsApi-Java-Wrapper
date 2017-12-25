@@ -69,6 +69,12 @@
             <version>${junit.vintage.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.shyiko.dotenv</groupId>
+            <artifactId>dotenv</artifactId>
+            <version>0.1.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

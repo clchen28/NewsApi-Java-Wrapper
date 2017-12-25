@@ -8,7 +8,7 @@ class NewsApi {
     private NewsApiTopEndpoint TopEndpoint;
     private NewsApiEverythingEndpoint EverythingEndpoint;
     private NewsApiSourcesEndpoint SourcesEndpoint;
-    Client restClient;
+    private Client restClient;
 
     public NewsApi(String apiKey) {
         this.setApiKey(apiKey);
