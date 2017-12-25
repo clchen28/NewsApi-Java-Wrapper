@@ -16,7 +16,7 @@ class NewsApiTest {
     void sendTopRequestBadAuth() {
         NewsApi newsApi = new NewsApi("badKey");
         NewsApiRequestBuilder request = new NewsApiRequestBuilder().setQ("bitcoin");
-        NewsApiAuthFailureException e = assertThrows(NewsApiAuthFailureException.class,
+        AuthFailureException e = assertThrows(AuthFailureException.class,
                 ()->newsApi.sendTopRequest(request));
         assertTrue(e.getMessage().contains("Your API key is invalid or incorrect"));
     }
@@ -35,7 +35,7 @@ class NewsApiTest {
     void sendTopRequestNoQuery() {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         NewsApiRequestBuilder request = new NewsApiRequestBuilder();
-        NewsApiBadQueryException e = assertThrows(NewsApiBadQueryException.class,
+        BadQueryException e = assertThrows(BadQueryException.class,
                 ()->newsApi.sendTopRequest(request));
         assertTrue(e.getMessage().contains("Required parameters are missing"));
     }
@@ -44,7 +44,7 @@ class NewsApiTest {
     void sendEverythingRequestBadAuth() {
         NewsApi newsApi = new NewsApi("badKey");
         NewsApiRequestBuilder request = new NewsApiRequestBuilder().setQ("bitcoin");
-        NewsApiAuthFailureException e = assertThrows(NewsApiAuthFailureException.class,
+        AuthFailureException e = assertThrows(AuthFailureException.class,
                 ()->newsApi.sendEverythingRequest(request));
         assertTrue(e.getMessage().contains("Your API key is invalid or incorrect"));
     }
@@ -63,7 +63,7 @@ class NewsApiTest {
     void sendEverythingRequestNoQuery() {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         NewsApiRequestBuilder request = new NewsApiRequestBuilder();
-        NewsApiBadQueryException e = assertThrows(NewsApiBadQueryException.class,
+        BadQueryException e = assertThrows(BadQueryException.class,
                 ()->newsApi.sendEverythingRequest(request));
         assertTrue(e.getMessage().contains("Required parameters are missing"));
     }
@@ -72,7 +72,7 @@ class NewsApiTest {
     void sendSourcesRequestBadAuth() {
         NewsApi newsApi = new NewsApi("badKey");
         NewsApiRequestBuilder request = new NewsApiRequestBuilder();
-        NewsApiAuthFailureException e = assertThrows(NewsApiAuthFailureException.class,
+        AuthFailureException e = assertThrows(AuthFailureException.class,
                 ()->newsApi.sendSourcesRequest(request));
         assertTrue(e.getMessage().contains("Your API key is invalid or incorrect"));
     }
