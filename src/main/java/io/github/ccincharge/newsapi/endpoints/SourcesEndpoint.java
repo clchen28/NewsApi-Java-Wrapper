@@ -3,8 +3,6 @@ package io.github.ccincharge.newsapi.endpoints;
 import com.google.gson.Gson;
 import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
 import io.github.ccincharge.newsapi.NewsApiSourcesResponse;
-import io.github.ccincharge.newsapi.exceptions.AuthFailureException;
-import io.github.ccincharge.newsapi.exceptions.BadQueryException;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
@@ -18,6 +16,13 @@ public class SourcesEndpoint extends Endpoint {
         this.setRootURL("https://newsapi.org/v2/sources?");
     }
 
+    NewsApiSourcesResponse getDataFromResponseBody(String responseBody) {
+        NewsApiSourcesResponse responseObj = (new Gson()).fromJson(responseBody,
+                NewsApiSourcesResponse.class);
+        responseObj.setRawJSON(responseBody);
+        return responseObj;
+    }
+
     public NewsApiSourcesResponse sendRequest(NewsApiRequestBuilder apiRequest,
                                                 Client restClient) {
         WebTarget target = buildTarget(apiRequest, restClient);
@@ -25,17 +30,9 @@ public class SourcesEndpoint extends Endpoint {
 
         Response response = builder.header("X-Api-Key", apiRequest.getApiKey()).get();
         String responseBody = response.readEntity(String.class);
-        NewsApiSourcesResponse responseObj = (new Gson()).fromJson(responseBody,
-                NewsApiSourcesResponse.class);
 
-        if (response.getStatus() == 401) {
-            throw new AuthFailureException(responseObj.message());
-        }
-        else if (response.getStatus() == 400) {
-            throw new BadQueryException(responseObj.message());
-        }
-
-        responseObj.setRawJSON(responseBody);
+        NewsApiSourcesResponse responseObj = getDataFromResponseBody(responseBody);
+        this.checkExceptions(response, responseObj);
         return responseObj;
     }
 
