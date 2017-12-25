@@ -3,8 +3,8 @@ package io.github.ccincharge.newsapi.endpoints;
 import com.google.gson.Gson;
 import io.github.ccincharge.newsapi.NewsApiArticlesResponse;
 import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
-import io.github.ccincharge.newsapi.exceptions.NewsApiAuthFailureException;
-import io.github.ccincharge.newsapi.exceptions.NewsApiBadQueryException;
+import io.github.ccincharge.newsapi.exceptions.AuthFailureException;
+import io.github.ccincharge.newsapi.exceptions.BadQueryException;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
@@ -13,8 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-public abstract class NewsApiArticlesEndpoint extends NewsApiEndpoint {
-    NewsApiArticlesEndpoint() {
+public abstract class ArticlesEndpoint extends Endpoint {
+    ArticlesEndpoint() {
         super();
     }
 
@@ -29,10 +29,10 @@ public abstract class NewsApiArticlesEndpoint extends NewsApiEndpoint {
                 NewsApiArticlesResponse.class);
 
         if (response.getStatus() == 401) {
-            throw new NewsApiAuthFailureException(responseObj.message());
+            throw new AuthFailureException(responseObj.message());
         }
         else if (response.getStatus() == 400) {
-            throw new NewsApiBadQueryException(responseObj.message());
+            throw new BadQueryException(responseObj.message());
         }
 
         responseObj.setRawJSON(responseBody);

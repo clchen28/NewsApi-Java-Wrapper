@@ -5,8 +5,8 @@ import io.github.ccincharge.newsapi.NewsApiRequestBuilder;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
-public class NewsApiTopEndpoint extends NewsApiArticlesEndpoint {
-    public NewsApiTopEndpoint() {
+public class TopEndpoint extends ArticlesEndpoint {
+    public TopEndpoint() {
         super();
         this.setRootURL("https://newsapi.org/v2/top-headlines?");
     }

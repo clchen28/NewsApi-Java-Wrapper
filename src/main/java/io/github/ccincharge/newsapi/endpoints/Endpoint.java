@@ -6,7 +6,7 @@ import io.github.ccincharge.newsapi.NewsApiResponse;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
-public abstract class NewsApiEndpoint {
+public abstract class Endpoint {
     private String rootURL;
 
     void setRootURL(String rootURL) {

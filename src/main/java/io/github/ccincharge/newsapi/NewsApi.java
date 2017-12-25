@@ -2,15 +2,15 @@ package io.github.ccincharge.newsapi;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import io.github.ccincharge.newsapi.endpoints.NewsApiEverythingEndpoint;
-import io.github.ccincharge.newsapi.endpoints.NewsApiSourcesEndpoint;
-import io.github.ccincharge.newsapi.endpoints.NewsApiTopEndpoint;
+import io.github.ccincharge.newsapi.endpoints.EverythingEndpoint;
+import io.github.ccincharge.newsapi.endpoints.SourcesEndpoint;
+import io.github.ccincharge.newsapi.endpoints.TopEndpoint;
 
 class NewsApi {
     private String apiKey;
-    private NewsApiTopEndpoint TopEndpoint;
-    private NewsApiEverythingEndpoint EverythingEndpoint;
-    private NewsApiSourcesEndpoint SourcesEndpoint;
+    private io.github.ccincharge.newsapi.endpoints.TopEndpoint TopEndpoint;
+    private io.github.ccincharge.newsapi.endpoints.EverythingEndpoint EverythingEndpoint;
+    private io.github.ccincharge.newsapi.endpoints.SourcesEndpoint SourcesEndpoint;
     private Client restClient;
 
     public NewsApi(String apiKey) {
@@ -19,9 +19,9 @@ class NewsApi {
     }
 
     private void initializeEndpoints() {
-        this.TopEndpoint = new NewsApiTopEndpoint();
-        this.EverythingEndpoint = new NewsApiEverythingEndpoint();
-        this.SourcesEndpoint = new NewsApiSourcesEndpoint();
+        this.TopEndpoint = new TopEndpoint();
+        this.EverythingEndpoint = new EverythingEndpoint();
+        this.SourcesEndpoint = new SourcesEndpoint();
     }
 
     private void initializeRequestAndClient(NewsApiRequestBuilder apiRequest) {
