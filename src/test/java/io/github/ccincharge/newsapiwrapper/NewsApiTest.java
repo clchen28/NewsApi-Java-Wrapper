@@ -25,6 +25,9 @@ class NewsApiTest {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         NewsApiRequestBuilder request = new NewsApiRequestBuilder().setQ("bitcoin");
         NewsApiArticlesResponse response = newsApi.sendTopRequest(request);
+        assertEquals("ok", response.status());
+        assertNotNull(response.totalResults());
+        assertNotNull(response.articles());
     }
 
     @Test
@@ -49,7 +52,10 @@ class NewsApiTest {
     void sendEverythingRequest() {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         NewsApiRequestBuilder request = new NewsApiRequestBuilder().setQ("bitcoin");
-        NewsApiArticlesResponse response = newsApi.sendTopRequest(request);
+        NewsApiArticlesResponse response = newsApi.sendEverythingRequest(request);
+        assertEquals("ok", response.status());
+        assertNotNull(response.totalResults());
+        assertNotNull(response.articles());
     }
 
     @Test
@@ -75,6 +81,8 @@ class NewsApiTest {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         NewsApiRequestBuilder request = new NewsApiRequestBuilder();
         NewsApiSourcesResponse response = newsApi.sendSourcesRequest(request);
+        assertEquals("ok", response.status());
+        assertNotNull(response.sources());
     }
 
 }
