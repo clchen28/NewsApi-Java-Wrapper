@@ -1,6 +1,6 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.datamodels;
 
-class NewsApiSource {
+public class Source {
     private String id;
     private String name;
     private String description;

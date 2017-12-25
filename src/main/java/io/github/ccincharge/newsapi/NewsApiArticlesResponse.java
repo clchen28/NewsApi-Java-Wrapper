@@ -1,10 +1,12 @@
 package io.github.ccincharge.newsapi;
 
+import io.github.ccincharge.newsapi.datamodels.Article;
+
 import java.util.ArrayList;
 
 public class NewsApiArticlesResponse extends NewsApiResponse {
     private Integer totalResults;
-    private ArrayList<NewsApiArticle> articles;
+    private ArrayList<Article> articles;
 
     public NewsApiArticlesResponse() {
         super();
@@ -15,7 +17,7 @@ public class NewsApiArticlesResponse extends NewsApiResponse {
         this.totalResults = totalResults;
     }
 
-    void setArticles(ArrayList<NewsApiArticle> articles) {
+    void setArticles(ArrayList<Article> articles) {
         this.articles = articles;
     }
 
@@ -23,7 +25,7 @@ public class NewsApiArticlesResponse extends NewsApiResponse {
         return this.totalResults;
     }
 
-    public ArrayList<NewsApiArticle> articles() {
+    public ArrayList<Article> articles() {
         return this.articles;
     }
 }

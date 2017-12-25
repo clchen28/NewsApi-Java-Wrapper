@@ -1,7 +1,7 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.datamodels;
 
-class NewsApiArticle {
-    private NewsApiSource source;
+public class Article {
+    private Source source;
     private String author;
     private String title;
     private String description;
@@ -9,7 +9,7 @@ class NewsApiArticle {
     private String urlToImage;
     private String publishedAt;
 
-    void setSource(NewsApiSource source) {
+    void setSource(Source source) {
         this.source = source;
     }
 
@@ -37,7 +37,7 @@ class NewsApiArticle {
         this.publishedAt = publishedAt;
     }
 
-    public NewsApiSource source() {
+    public Source source() {
         return this.source;
     }
 
