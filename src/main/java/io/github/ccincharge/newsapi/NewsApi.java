@@ -7,6 +7,8 @@ import io.github.ccincharge.newsapi.requests.RequestBuilder;
 import io.github.ccincharge.newsapi.endpoints.EverythingEndpoint;
 import io.github.ccincharge.newsapi.endpoints.SourcesEndpoint;
 import io.github.ccincharge.newsapi.endpoints.TopEndpoint;
+import io.github.ccincharge.newsapi.responses.ApiArticlesResponse;
+import io.github.ccincharge.newsapi.responses.ApiSourcesResponse;
 
 class NewsApi {
     private String apiKey;
@@ -37,18 +39,18 @@ class NewsApi {
         this.apiKey = apiKey;
     }
 
-    public NewsApiArticlesResponse sendTopRequest(RequestBuilder apiRequest) {
+    public ApiArticlesResponse sendTopRequest(RequestBuilder apiRequest) {
         initializeRequestAndClient(apiRequest);
         return this.TopEndpoint.sendRequest(apiRequest, this.restClient);
     }
 
 
-    public NewsApiArticlesResponse sendEverythingRequest(RequestBuilder apiRequest) {
+    public ApiArticlesResponse sendEverythingRequest(RequestBuilder apiRequest) {
         initializeRequestAndClient(apiRequest);
         return this.EverythingEndpoint.sendRequest(apiRequest, this.restClient);
     }
 
-    public NewsApiSourcesResponse sendSourcesRequest(RequestBuilder apiRequest) {
+    public ApiSourcesResponse sendSourcesRequest(RequestBuilder apiRequest) {
         initializeRequestAndClient(apiRequest);
         return this.SourcesEndpoint.sendRequest(apiRequest, this.restClient);
     }

@@ -1,14 +1,14 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.responses;
 
 import io.github.ccincharge.newsapi.datamodels.Article;
 
 import java.util.ArrayList;
 
-public class NewsApiArticlesResponse extends NewsApiResponse {
+public class ApiArticlesResponse extends ApiResponse {
     private Integer totalResults;
     private ArrayList<Article> articles;
 
-    public NewsApiArticlesResponse() {
+    public ApiArticlesResponse() {
         super();
         this.setTotalResults(0);
     }

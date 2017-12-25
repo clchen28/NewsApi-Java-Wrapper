@@ -1,6 +1,6 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.responses;
 
-public class NewsApiResponse {
+public class ApiResponse {
     private String status;
     private String code;
     private String message;
@@ -38,7 +38,7 @@ public class NewsApiResponse {
         return this.rawJSON;
     }
 
-    NewsApiResponse() {
+    ApiResponse() {
         this.setStatus("unsent");
     }
 }

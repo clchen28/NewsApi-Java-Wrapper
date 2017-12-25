@@ -1,7 +1,7 @@
 package io.github.ccincharge.newsapi.endpoints;
 
 import com.google.gson.Gson;
-import io.github.ccincharge.newsapi.NewsApiArticlesResponse;
+import io.github.ccincharge.newsapi.responses.ApiArticlesResponse;
 import io.github.ccincharge.newsapi.requests.RequestBuilder;
 
 import javax.ws.rs.client.Client;
@@ -16,22 +16,22 @@ public abstract class ArticlesEndpoint extends Endpoint {
         super();
     }
 
-    NewsApiArticlesResponse getDataFromResponseBody(String responseBody) {
-        NewsApiArticlesResponse responseObj = (new Gson()).fromJson(responseBody,
-                NewsApiArticlesResponse.class);
+    ApiArticlesResponse getDataFromResponseBody(String responseBody) {
+        ApiArticlesResponse responseObj = (new Gson()).fromJson(responseBody,
+                ApiArticlesResponse.class);
         responseObj.setRawJSON(responseBody);
         return responseObj;
     }
 
-    public NewsApiArticlesResponse sendRequest(RequestBuilder apiRequest,
-                                               Client restClient) {
+    public ApiArticlesResponse sendRequest(RequestBuilder apiRequest,
+                                           Client restClient) {
         WebTarget target = buildTarget(apiRequest, restClient);
         Invocation.Builder builder = target.request(MediaType.APPLICATION_JSON);
 
         Response response = builder.header("X-Api-Key", apiRequest.getApiKey()).get();
         String responseBody = response.readEntity(String.class);
 
-        NewsApiArticlesResponse responseObj = getDataFromResponseBody(responseBody);
+        ApiArticlesResponse responseObj = getDataFromResponseBody(responseBody);
         this.checkExceptions(response, responseObj);
         return responseObj;
     }

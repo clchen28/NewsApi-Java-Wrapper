@@ -1,13 +1,13 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.responses;
 
 import io.github.ccincharge.newsapi.datamodels.Source;
 
 import java.util.ArrayList;
 
-public class NewsApiSourcesResponse extends NewsApiResponse {
+public class ApiSourcesResponse extends ApiResponse {
     private ArrayList<Source> sources;
 
-    public NewsApiSourcesResponse() {
+    public ApiSourcesResponse() {
         super();
     }
 

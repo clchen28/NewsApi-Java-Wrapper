@@ -3,6 +3,8 @@ package io.github.ccincharge.newsapi;
 import com.github.shyiko.dotenv.DotEnv;
 import io.github.ccincharge.newsapi.requests.RequestBuilder;
 import io.github.ccincharge.newsapi.exceptions.*;
+import io.github.ccincharge.newsapi.responses.ApiArticlesResponse;
+import io.github.ccincharge.newsapi.responses.ApiSourcesResponse;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -26,7 +28,7 @@ class NewsApiTest {
     void sendTopRequest() {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         RequestBuilder request = new RequestBuilder().setQ("bitcoin");
-        NewsApiArticlesResponse response = newsApi.sendTopRequest(request);
+        ApiArticlesResponse response = newsApi.sendTopRequest(request);
         assertEquals("ok", response.status());
         assertNotNull(response.totalResults());
         assertNotNull(response.articles());
@@ -54,7 +56,7 @@ class NewsApiTest {
     void sendEverythingRequest() {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         RequestBuilder request = new RequestBuilder().setQ("bitcoin");
-        NewsApiArticlesResponse response = newsApi.sendEverythingRequest(request);
+        ApiArticlesResponse response = newsApi.sendEverythingRequest(request);
         assertEquals("ok", response.status());
         assertNotNull(response.totalResults());
         assertNotNull(response.articles());
@@ -82,7 +84,7 @@ class NewsApiTest {
     void sendSourcesRequest() {
         NewsApi newsApi = new NewsApi(dotEnv.get("API_KEY"));
         RequestBuilder request = new RequestBuilder();
-        NewsApiSourcesResponse response = newsApi.sendSourcesRequest(request);
+        ApiSourcesResponse response = newsApi.sendSourcesRequest(request);
         assertEquals("ok", response.status());
         assertNotNull(response.sources());
     }

@@ -1,7 +1,7 @@
 package io.github.ccincharge.newsapi.endpoints;
 
 import io.github.ccincharge.newsapi.requests.RequestBuilder;
-import io.github.ccincharge.newsapi.NewsApiResponse;
+import io.github.ccincharge.newsapi.responses.ApiResponse;
 import io.github.ccincharge.newsapi.exceptions.AuthFailureException;
 import io.github.ccincharge.newsapi.exceptions.BadQueryException;
 
@@ -20,12 +20,12 @@ public abstract class Endpoint {
         return this.rootURL;
     }
 
-    public abstract NewsApiResponse sendRequest(RequestBuilder apiRequest,
-                                                Client restClient);
+    public abstract ApiResponse sendRequest(RequestBuilder apiRequest,
+                                            Client restClient);
 
     abstract WebTarget buildTarget(RequestBuilder apiRequest, Client restClient);
 
-    void checkExceptions(Response response, NewsApiResponse responseObj) {
+    void checkExceptions(Response response, ApiResponse responseObj) {
         if (response.getStatus() == 401) {
             throw new AuthFailureException(responseObj.message());
         }

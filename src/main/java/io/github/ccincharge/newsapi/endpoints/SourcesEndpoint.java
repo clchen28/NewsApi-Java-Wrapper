@@ -2,7 +2,7 @@ package io.github.ccincharge.newsapi.endpoints;
 
 import com.google.gson.Gson;
 import io.github.ccincharge.newsapi.requests.RequestBuilder;
-import io.github.ccincharge.newsapi.NewsApiSourcesResponse;
+import io.github.ccincharge.newsapi.responses.ApiSourcesResponse;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
@@ -16,22 +16,22 @@ public class SourcesEndpoint extends Endpoint {
         this.setRootURL("https://newsapi.org/v2/sources?");
     }
 
-    NewsApiSourcesResponse getDataFromResponseBody(String responseBody) {
-        NewsApiSourcesResponse responseObj = (new Gson()).fromJson(responseBody,
-                NewsApiSourcesResponse.class);
+    ApiSourcesResponse getDataFromResponseBody(String responseBody) {
+        ApiSourcesResponse responseObj = (new Gson()).fromJson(responseBody,
+                ApiSourcesResponse.class);
         responseObj.setRawJSON(responseBody);
         return responseObj;
     }
 
-    public NewsApiSourcesResponse sendRequest(RequestBuilder apiRequest,
-                                                Client restClient) {
+    public ApiSourcesResponse sendRequest(RequestBuilder apiRequest,
+                                          Client restClient) {
         WebTarget target = buildTarget(apiRequest, restClient);
         Invocation.Builder builder = target.request(MediaType.APPLICATION_JSON);
 
         Response response = builder.header("X-Api-Key", apiRequest.getApiKey()).get();
         String responseBody = response.readEntity(String.class);
 
-        NewsApiSourcesResponse responseObj = getDataFromResponseBody(responseBody);
+        ApiSourcesResponse responseObj = getDataFromResponseBody(responseBody);
         this.checkExceptions(response, responseObj);
         return responseObj;
     }
