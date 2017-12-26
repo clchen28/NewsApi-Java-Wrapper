@@ -4,3 +4,4 @@ tasks.todo
 *.iml
 target/
 App.java
+settings.xml

@@ -13,8 +13,11 @@ NewsApi newsApi = new NewsApi(<API_KEY>);
 ### Requests
 Build up a request with desired parameters. For a full listing of available request parameters, consult the official 
 NewsAPI docs:
+
 https://newsapi.org/docs/endpoints/top-headlines
+
 https://newsapi.org/docs/endpoints/everything
+
 https://newsapi.org/docs/endpoints/sources
 
 For this example, we'll search for English articles about bitcoin.
