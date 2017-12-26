@@ -49,7 +49,7 @@ public class Article {
         return this.title;
     }
 
-    public String descrption() {
+    public String description() {
         return this.description;
     }
 
