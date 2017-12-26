@@ -2,6 +2,11 @@ package io.github.ccincharge.newsapi.datamodels;
 
 import java.util.Objects;
 
+/**
+ * Maps to an Article object from the NewsAPI. Each Article object represents one news article, and
+ * consists of a Source object that describes the news source that this article is from, as well as
+ * attributes that correspond to data within the actual article.
+ */
 public class Article {
     private Source source;
     private String author;
@@ -69,35 +74,58 @@ public class Article {
         }
     }
 
+    /**
+     * @return Source that this article is from.
+     */
     public Source source() {
         return this.source;
     }
 
+    /**
+     * @return Author of this article
+     */
     public String author() {
         this.setAuthor(this.author);
         return this.author;
     }
 
+    /**
+     * @return Title of this article
+     */
     public String title() {
         this.setTitle(this.title);
         return this.title;
     }
 
+    /**
+     * @return Description of the current article
+     */
     public String description() {
         this.setDescription(this.description);
         return this.description;
     }
 
+    /**
+     * @return String URL at which this article can be found
+     */
     public String url() {
         this.setUrl(this.url);
         return this.url;
     }
 
+    /**
+     * @return String URL to main image of this article
+     */
     public String urlToImage() {
         this.setUrlToImage(this.urlToImage);
         return this.urlToImage;
     }
 
+    /**
+     * @return String date during which this article was published, in ISO 8601 format:
+     * yyyy-MM-ddTHH:mm:ssZ
+     * e.g., 2017-12-25T18:32:56Z for December 25, 2017 at 06:32:56 PM UTC
+     */
     public String publishedAt() {
         this.setPublishedAt(this.publishedAt);
         return this.publishedAt;
