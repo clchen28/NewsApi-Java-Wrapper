@@ -9,6 +9,10 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for RequestBuilder class. Checks for correct getting and setting of various
+ * attributes.
+ */
 class RequestBuilderTest {
     @Test
     void setSourcesString1() {

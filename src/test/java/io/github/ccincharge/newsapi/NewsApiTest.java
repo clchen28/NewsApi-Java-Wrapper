@@ -11,6 +11,10 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Integration tests for various API calls. Checks for correct authentication, and for correct
+ * query parameters sent to each endpoint.
+ */
 class NewsApiTest {
 
     private Map<String, String> dotEnv = DotEnv.load();

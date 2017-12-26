@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit test for SourcesEndpoint. Checks to see that a new ApiSourcesResponse object is
+ * correctly mapped from raw JSON. Uses a text file with raw JSON instead of an actual call to
+ * the REST API.
+ */
 class SourcesEndpointTest extends EndpointTest {
     @Test
     void getDataFromResponseBody() throws Exception {

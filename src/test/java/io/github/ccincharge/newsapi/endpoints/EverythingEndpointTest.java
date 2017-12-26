@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit test for EverythingEndpoint. Checks to see that a new ApiArticlesResponse object is
+ * correctly mapped from raw JSON. Uses a text file with raw JSON instead of an actual call to
+ * the REST API.
+ */
 class EverythingEndpointTest extends EndpointTest {
     @Test
     void getDataFromResponseBody() throws Exception {
