@@ -1,4 +1,7 @@
 # NewsApi Java Wrapper
+[![Build Status](https://travis-ci.org/CCInCharge/NewsApi-Java-Wrapper.svg?branch=master)](https://travis-ci.org/CCInCharge/NewsApi-Java-Wrapper)
+[![codecov](https://codecov.io/gh/CCInCharge/NewsApi-Java-Wrapper/branch/master/graph/badge.svg)](https://codecov.io/gh/CCInCharge/NewsApi-Java-Wrapper)
+
 A Java wrapper for V2 of the [NewsApi](https://newsapi.org/). 
 
 ## Usage
