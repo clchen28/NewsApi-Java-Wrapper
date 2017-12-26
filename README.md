@@ -17,7 +17,7 @@ https://newsapi.org/docs/endpoints/sources
 For this example, we'll search for English articles about bitcoin.
 
 ```java
-RequestBuilder bitcoinRequest = new RequestBuidler()
+RequestBuilder bitcoinRequest = new RequestBuilder()
     .setQ("bitcoin")
     .setLanguage("en");
 ```
@@ -28,7 +28,7 @@ available parameters, consult the RequestBuilder Javadoc.
 ### Top Headlines Endpoint
 The top-headlines endpoint returns a list of top headlines that match the given request parameters.
 ```java
-RequestBuilder bitcoinRequest = new RequestBuidler()
+RequestBuilder bitcoinRequest = new RequestBuilder()
     .setQ("bitcoin")
     .setLanguage("en");
 
@@ -41,7 +41,7 @@ It is possible that there are more articles that match given query criteria than
 response.
 To page through different pages of results, use the .setPage() method for the request.
 ```java
-RequestBuilder bitcoinRequest = new RequestBuidler()
+RequestBuilder bitcoinRequest = new RequestBuilder()
     .setQ("bitcoin")
     .setLanguage("en")
     .setPage(2);
@@ -52,7 +52,7 @@ ApiArticlesResponse apiArticlesResponse = newsApi.sendEverythingRequest(bitcoinR
 ### Sources Endpoint
 The sources endpoint returns a list of all news sources that match the given query criteria.
 ```java
-RequestBuilder sourcesRequest = new RequestBuidler().setLanguage("en");
+RequestBuilder sourcesRequest = new RequestBuilder().setLanguage("en");
 
 ApiSourcesResponse apiSourcesResponse = newsApi.sendSourcesRequest(sourcesRequest);
 ```
@@ -62,7 +62,7 @@ The top-headlines and the everything endpoints return an ApiArticlesResponse obj
 issue a method call with the name of the desired response attribute, in order to access the value associated with that 
 attribute. Some examples are provided below:
 ```java
-RequestBuilder bitcoinRequest = new RequestBuidler()
+RequestBuilder bitcoinRequest = new RequestBuilder()
     .setQ("bitcoin")
     .setLanguage("en");
 
@@ -83,7 +83,7 @@ the name of the desired response attribute, in order to access the value associa
 are provided below:
 
 ```java
-RequestBuilder sourcesRequest = new RequestBuidler().setLanguage("en");
+RequestBuilder sourcesRequest = new RequestBuilder().setLanguage("en");
 
 ApiSourcesResponse apiSourcesResponse = newsApi.sendSourcesRequest(sourcesRequest);
 // .sources() method returns an ArrayList of sources
