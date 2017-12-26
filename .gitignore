@@ -1,0 +1,6 @@
+.env
+.idea
+tasks.todo
+*.iml
+target/
+App.java
