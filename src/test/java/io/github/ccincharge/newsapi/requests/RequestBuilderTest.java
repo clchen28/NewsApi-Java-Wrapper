@@ -1,4 +1,4 @@
-package io.github.ccincharge.newsapi;
+package io.github.ccincharge.newsapi.requests;
 
 import io.github.ccincharge.newsapi.requests.RequestBuilder;
 import org.junit.jupiter.api.Test;
