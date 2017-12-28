@@ -11,8 +11,16 @@
         https://github.com/CCInCharge/NewsApi-Java-Wrapper
     </url>
     <description>
-        Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/
+        NewsApi Java Wrapper
     </description>
+    <developers>
+        <developer>
+            <name>Charles Chen</name>
+            <email>charles.l.chen.clc@gmail.com</email>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/CCInCharge/NewsApi-Java-Wrapper</organizationUrl>
+        </developer>
+    </developers>
     <scm>
         <connection>
             scm:git:git@github.com:CCInCharge/NewsApi-Java-Wrapper.git

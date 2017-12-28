@@ -4,6 +4,16 @@
 
 A Java wrapper for V2 of the [NewsApi](https://newsapi.org/). 
 
+## Installation
+Insert the following Maven dependency in your pom.xml:
+```xml
+<dependency>
+    <groupId>io.github.ccincharge</groupId>
+    <artifactId>newsapi</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
 ## Usage
 Instantiate a new instance of the NewsApi class with your API key.
 ```java
